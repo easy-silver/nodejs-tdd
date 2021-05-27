@@ -1,5 +1,9 @@
 const fs = require('fs');
 
-const data = fs.readFileSync('./data.txt', 'utf-8');
+// 동기 함수 
+// const data = fs.readFileSync('./data.txt', 'utf-8');
 
-console.log(data);
+// 비동기 함수
+fs.readFile('./data.txt', 'utf-8', function (err, data) {
+    console.log(data);
+});
