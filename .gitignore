@@ -1,6 +1,2 @@
 /node_modules
-.idea/dbnavigator.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/nodejs-tdd.iml
-.idea/vcs.xml
+/.idea
