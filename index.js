@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
 
 let users = [
     { id: 1, name: 'alice' },
@@ -9,6 +10,8 @@ let users = [
 ];
 
 app.use(morgan('dev'));
+app.use(bodyParser.json);
+app.use(bodyParser.urlencoded({extended: true}));
 
 /**
  * 사용자 목록 조회 API
