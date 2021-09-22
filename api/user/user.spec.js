@@ -104,7 +104,7 @@ describe('DELETE /users/:id는', () => {
     });
 });
 
-describe.only('POST /users는', () => {
+describe('POST /users는', () => {
     const users = [{name: 'alice'}, {name: 'bek'}, {name: 'chris'}];
     //데이터베이스 연결
     before(() => models.sequelize.sync({force: true}));
