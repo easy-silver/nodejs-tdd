@@ -10,6 +10,9 @@ const users = [
 
 app.use(morgan('dev'));
 
+/**
+ * 사용자 목록 조회 API
+ */
 app.get('/users', (req, res) => {
     req.query.limit = req.query.limit || 10;
     const limit = parseInt(req.query.limit, 10);
@@ -17,6 +20,15 @@ app.get('/users', (req, res) => {
         return res.status(400).end();
     }
     res.json(users.slice(0, limit));
+});
+
+/**
+ * 사용자 조회 API
+ */
+app.get('/users/:id', (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    const user = users.filter((user) => user.id === id )[0];
+    res.json(user);
 });
 
 app.listen(3000, () => {
