@@ -6,15 +6,14 @@ const models = require('../../models');
 
 //API 테스트의 경우 테스트 수트에 API 이름을 적는다.
 describe('GET /users는', () => {
+    const users = [{name: 'alice'}, {name: 'bek'}, {name: 'chris'}];
+    //데이터베이스 연결
+    before(() => models.sequelize.sync({force: true}));
+    //샘플 데이터 생성
+    before(() => {
+        return models.User.bulkCreate(users);
+    });
     describe('성공 시', () => {
-        const users = [{name: 'alice'}, {name: 'bek'}, {name: 'chris'}];
-        //데이터베이스 연결
-        before(() => models.sequelize.sync({force: true}));
-        //샘플 데이터 생성
-        before(() => {
-            return models.User.bulkCreate(users);
-        });
-
         it('유저 객체를 담은 배열로 응답한다', (done) => {
             request(app)
                 .get('/users')
@@ -44,6 +43,13 @@ describe('GET /users는', () => {
 });
 
 describe('GET /users/:id는', () => {
+    const users = [{name: 'alice'}, {name: 'bek'}, {name: 'chris'}];
+    //데이터베이스 연결
+    before(() => models.sequelize.sync({force: true}));
+    //샘플 데이터 생성
+    before(() => {
+        return models.User.bulkCreate(users);
+    });
     describe('성공 시', () => {
         it('id가 1인 유저 객체를 반환한다.', (done) => {
             request(app)
@@ -71,7 +77,14 @@ describe('GET /users/:id는', () => {
     })
 });
 
-describe.only('DELETE /users/:id는', () => {
+describe('DELETE /users/:id는', () => {
+    const users = [{name: 'alice'}, {name: 'bek'}, {name: 'chris'}];
+    //데이터베이스 연결
+    before(() => models.sequelize.sync({force: true}));
+    //샘플 데이터 생성
+    before(() => {
+        return models.User.bulkCreate(users);
+    });
     describe('성공 시', () => {
         it('204를 응답한다.', done => {
             request(app)
@@ -91,7 +104,14 @@ describe.only('DELETE /users/:id는', () => {
     });
 });
 
-describe('POST /users는', () => {
+describe.only('POST /users는', () => {
+    const users = [{name: 'alice'}, {name: 'bek'}, {name: 'chris'}];
+    //데이터베이스 연결
+    before(() => models.sequelize.sync({force: true}));
+    //샘플 데이터 생성
+    before(() => {
+        return models.User.bulkCreate(users);
+    });
     describe('성공 시', () => {
         let name = 'daniel',
             body;
@@ -132,6 +152,13 @@ describe('POST /users는', () => {
 });
 
 describe('PUT /users/:id는', () => {
+    const users = [{name: 'alice'}, {name: 'bek'}, {name: 'chris'}];
+    //데이터베이스 연결
+    before(() => models.sequelize.sync({force: true}));
+    //샘플 데이터 생성
+    before(() => {
+        return models.User.bulkCreate(users);
+    });
     describe('성공 시', () => {
         it('변경된 name을 응답한다.', done => {
             const name = 'chally';
