@@ -5,7 +5,7 @@ const models = require('../../models');
 
 
 //API 테스트의 경우 테스트 수트에 API 이름을 적는다.
-describe.only('GET /users는', () => {
+describe('GET /users는', () => {
     describe('성공 시', () => {
         const users = [{name: 'alice'}, {name: 'bek'}, {name: 'chris'}];
         //데이터베이스 연결
@@ -43,7 +43,7 @@ describe.only('GET /users는', () => {
 
 });
 
-describe('GET /users/:id는', () => {
+describe.only('GET /users/:id는', () => {
     describe('성공 시', () => {
         it('id가 1인 유저 객체를 반환한다.', (done) => {
             request(app)
