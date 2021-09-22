@@ -124,9 +124,9 @@ describe('POST /users는', () => {
 describe('PUT /users/:id는', () => {
     describe('성공 시', () => {
         it('변경된 name을 응답한다.', done => {
-            const name = 'den';
+            const name = 'chally';
             request(app)
-                .put('/users/4')
+                .put('/users/3')
                 .send({name})
                 .end((err, res) => {
                     res.body.should.have.property('name', name);
