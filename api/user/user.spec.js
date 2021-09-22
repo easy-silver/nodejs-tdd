@@ -5,11 +5,17 @@ const models = require('../../models');
 
 
 //API 테스트의 경우 테스트 수트에 API 이름을 적는다.
-describe('GET /users는', () => {
+describe.only('GET /users는', () => {
     describe('성공 시', () => {
+        const users = [{name: 'alice'}, {name: 'bek'}, {name: 'chris'}];
+        //데이터베이스 연결
         before(() => models.sequelize.sync({force: true}));
+        //샘플 데이터 생성
+        before(() => {
+            return models.User.bulkCreate(users);
+        });
 
-        it.only('유저 객체를 담은 배열로 응답한다', (done) => {
+        it('유저 객체를 담은 배열로 응답한다', (done) => {
             request(app)
                 .get('/users')
                 .end((err, res) => {

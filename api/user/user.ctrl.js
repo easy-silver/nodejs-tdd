@@ -5,7 +5,10 @@ const index = (req, res) => {
     const limit = parseInt(req.query.limit, 10);
     if (Number.isNaN(limit)) return res.status(400).end();
 
-    models.User.findAll({})
+    models.User
+        .findAll({
+            limit: limit
+        })
         .then(users => {
             res.json(users);
         });
