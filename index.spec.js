@@ -41,7 +41,7 @@ describe('GET /users:1는', () => {
                 .end((err, res) => {
                     res.body.should.have.property('id', 1);
                     done();
-            });
+                });
         });
     });
 
@@ -56,6 +56,17 @@ describe('GET /users:1는', () => {
             request(app)
                 .get('/users/999')
                 .expect(404)
+                .end(done);
+        });
+    })
+});
+
+describe('DELETE /users:1는', () => {
+    describe('성공 시', () => {
+        it('204를 응답한다.', done => {
+            request(app)
+                .delete('/users/1')
+                .expect(204)
                 .end(done);
         });
     })
