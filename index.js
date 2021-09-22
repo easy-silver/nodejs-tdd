@@ -10,7 +10,7 @@ let users = [
 ];
 
 app.use(morgan('dev'));
-app.use(bodyParser.json);
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 /**
@@ -42,6 +42,14 @@ app.delete('/users/:id', (req, res) => {
 
     users = users.filter(user => user.id !== id);
     res.status(204).end();
+});
+
+app.post('/users', (req, res) => {
+    const name = req.body.name;
+    const id = Date.now();
+    const user = {id, name};
+    users.push(user);
+    res.status(201).json(user);
 });
 
 
